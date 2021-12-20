@@ -1,0 +1,1 @@
+export { default as getScores } from './get-scores.js'
