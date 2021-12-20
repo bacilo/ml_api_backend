@@ -14,6 +14,16 @@ export default async (req, res) => {
     console.log(err)
     return res.status(400).json(errorHelper('00055', req, err.message));
   }
+
+  let comment = new Comment({
+    text: req.query.text,
+    toxicity: toxicity
+  });
+
+  comment = await comment.save().catch((err) => {
+    return res.status(500).json(errorHelper('00034', req, err.message))
+  });
+
   return res.status(200).json({
     resultMessage: { toxicity: toxicity},
     resultCode: '00004' // Figure out the right  resultCode here
