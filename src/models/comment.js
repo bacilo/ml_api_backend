@@ -6,7 +6,28 @@ const commentSchema = new Schema({
 		type: String,
 		required: true
 	},
+	unsubstantial:{
+		type: Number,
+	},
+	spam:{
+		type: Number,
+	},
 	toxicity:{
+		type: Number,
+	},
+	severe_toxicity:{
+		type: Number,
+	},
+	threat:{
+		type: Number,
+	},
+	insult:{
+		type: Number,
+	},
+	profanity:{
+		type: Number,
+	},
+	identity_attack:{
 		type: Number,
 	}
 },
