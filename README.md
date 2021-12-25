@@ -1,21 +1,20 @@
-# nodejs-starter-template
-You can use this template when you're starting a new project. It contains general concepts, you can customize it according to your needs.
+# ml_api_backend
 
-A boilerplate/starter project for quickly building RESTful APIs using Node.js, Express, and Mongoose.
+This is based off the template [nodejs-starter-template.git](https://github.com/bahricanyesil/nodejs-starter-template.git). More instructions can be found in that project's documentation.
 
-You will get a production-ready Node.js app installed and configured on your machine. The app comes with many built-in features, such as authentication using JWT, request validation, error handling, logging, API documentation, image uploading (to AWS bucket), email sending, etc.
-
-Social logins (Google&Apple), unit and integration tests, in-app purchases (Google&Apple), daily crons, notifications (firebase), pagination, etc could be added in the future. Get ready for more, star it and wait!
 
 <br />
 
 ## Manual Installation
 
-- git clone https://github.com/bahricanyesil/nodejs-starter-template.git
-- cd nodejs-starter-template
+- git clone https://github.com/bacilo/ml_api_backend.git
+- cd ml_api_backend
 - npm install
 - Prepare the environment variables by generating .env file just as .env.sample file
-- npm start
+- run:
+  1. quick start: npm start
+  2. developing: nodemon node src/app.js (requires nodemon - auto-refresh)
+  3. production: pm2 start npm -- start (requires pm2 - keeps it alive)
 
 <br />
 
@@ -73,6 +72,9 @@ REFRESH_TOKEN_SECRET_KEY=REFRESH_TOKEN_SECRET_KEY_HERE
 AWS_REGION=AWS_REGION_HERE
 AWS_ACCESS_KEY_ID=AWS_ACCESS_KEY_ID_HERE
 AWS_SECRET_ACCESS_KEY=AWS_SECRET_ACCESS_KEY_HERE
+
+# Perspective API Config
+PERSPECTIVE_API_KEY=PERSPECTIVE_API_KEY_HERE
 ```
 
 <br />
