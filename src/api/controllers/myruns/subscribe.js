@@ -1,4 +1,3 @@
-// import { Activity } from '../../../models/index.js';
 import { errorHelper, logger, getText } from '../../../utils/index.js';
 
 export default async (req, res) => {

@@ -2,33 +2,25 @@ import mongoose from 'mongoose';
 const { Schema, model } = mongoose;
 
 const activitySchema = new Schema({
-	text:{
+	activityId:{
 		type: String,
-		required: true
+    	required: true,
+    	unique: true,
 	},
-	unsubstantial:{
+	start_latitude:{
 		type: Number,
 	},
-	spam:{
+	start_longitude:{
 		type: Number,
+	},	
+	continent:{
+		type: String,
 	},
-	toxicity:{
-		type: Number,
+	country:{
+		type: String,
 	},
-	severe_toxicity:{
-		type: Number,
-	},
-	threat:{
-		type: Number,
-	},
-	insult:{
-		type: Number,
-	},
-	profanity:{
-		type: Number,
-	},
-	identity_attack:{
-		type: Number,
+	locality:{
+		type: String,
 	}
 },
 	{

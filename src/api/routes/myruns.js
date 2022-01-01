@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import { addActivity } from '../controllers/strava/index.js';
-import { subscribe } from '../controllers/strava/index.js';
+import { addActivity } from '../controllers/myruns/index.js';
+import { subscribe } from '../controllers/myruns/index.js';
 
 const router = Router();
 
