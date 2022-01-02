@@ -14,23 +14,16 @@ export function isTokenValid(){
 }
 
 export async function refreshToken(){
-  console.log('refreshToken - 1')
   const util = require('util');
   const request = require('request');
   const options = {
     url: 'https://www.strava.com/oauth/token?client_id='+stravaClientId+'&client_secret='+stravaClientSecret+'&grant_type=refresh_token&refresh_token='+stravaRefreshToken,
   };  
-  console.log('refreshToken - 2')
   function callback(error, response, body){
-    // console.log(response)
-    console.log('refreshToken - callback - 1')
     if (!error && response.statusCode == 200) {
-      console.log('refreshToken - callback - 2')
       const info = JSON.parse(body);
-      console.log('refreshToken - callback - 3')
       stravaAccessToken = info['access_token'];
       stravaAccessTokenExpiry = info['expires_at']*1000;
-      console.log('refreshToken - callback - 4')
     }
     else {
       console.error('error 0:', error); // Print the error if one occurred
@@ -39,17 +32,13 @@ export async function refreshToken(){
 
   const requestPromise = util.promisify(request.post);
   const response = await requestPromise(options, callback);
-  console.log('refreshToken - 4')
-  console.log('response', response.body);
 }
 
 export async function getActivity(activityId){
-
+  console.log('1')
   if(!isTokenValid())
     await refreshToken();
-
-  console.log('getActivity - Token is this old: - ' + (Date.now() - stravaAccessTokenExpiry))
-
+  console.log('2')
   const request = require('request');
   const options = {
     url: 'https://www.strava.com/api/v3/activities/'+activityId,
@@ -73,8 +62,7 @@ export async function getActivity(activityId){
     }
     else {
       console.error('error 2:', JSON.parse(body)); // Print the error if one occurred
-      // console.error('response:', response); // Print the error if one occurred
-      // Errors: 'Record Not Found'
+      // Errors (for dealing with later): 'Record Not Found'
     }
   }
   request(options, callback);
@@ -86,10 +74,13 @@ export function getLocation(activityId){
   function callback(error, response, body) {
     if (!error && response.statusCode == 200) {
       const info = JSON.parse(body);
+      console.log(info)
       Activity.findOne({'activityId': activityId}, function(err, activity){
         activity.continent = info.data[0].continent;
         activity.country = info.data[0].country;
         activity.locality = info.data[0].locality;
+        console.log(info.data[0].country)
+        console.log(info.data[0].locality)
         activity.save(function(err){
           if(err) console.error('error 3: ', err);
         })
@@ -104,6 +95,8 @@ export function getLocation(activityId){
     const options = {
       url: 'http://api.positionstack.com/v1/reverse?access_key='+geocodingAPIkey+'&query='+activity.start_latitude+','+activity.start_longitude,
     };  
+    console.log(activity.start_latitude)
+    console.log(activity.start_longitude)
     request(options, callback);
   });
 }
