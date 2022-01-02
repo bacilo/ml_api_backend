@@ -1,9 +1,6 @@
 import { Activity } from '../../../models/index.js';
 import { errorHelper, logger } from '../../../utils/index.js';
 
-let all_places;
-
-// This is the service to be called by Strava when new activities appear
 export default async (req, res) => {
   let all_places= JSON.parse('{"places":[]}');
   const localities = await Activity.find().distinct('locality');
