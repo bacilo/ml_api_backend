@@ -4,6 +4,7 @@ import logModel from './log.js';
 import commentModel from './comment.js';
 import activityModel from './activity.js';
 
+
 export const User = userModel;
 export const Token = tokenModel;
 export const Log = logModel;
