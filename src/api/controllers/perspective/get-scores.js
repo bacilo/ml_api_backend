@@ -8,6 +8,7 @@ const require = createRequire(import.meta.url);
 
 export default async (req, res) => {
   try{
+
     const Perspective = require('perspective-api-client');
     const perspective = new Perspective({apiKey: perspectiveAPIkey});
 
@@ -30,6 +31,8 @@ export default async (req, res) => {
     var insult = result['attributeScores']['INSULT']['summaryScore']['value'];
     var profanity = result['attributeScores']['PROFANITY']['summaryScore']['value'];
     var identity_attack = result['attributeScores']['IDENTITY_ATTACK']['summaryScore']['value'];
+    var from_speech = req.query.from_speech;
+    var client_ip = req.client._peername.address;
   } catch(err){
     console.log(err)
     return res.status(400).json(errorHelper('00055', req, err.message));
@@ -44,7 +47,9 @@ export default async (req, res) => {
     threat: threat,
     insult: insult,
     profanity: profanity,
-    identity_attack: identity_attack
+    identity_attack: identity_attack,
+    from_speech: from_speech,
+    client_ip: client_ip
   });
 
   comment = await comment.save().catch((err) => {

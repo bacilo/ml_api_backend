@@ -29,6 +29,12 @@ const commentSchema = new Schema({
 	},
 	identity_attack:{
 		type: Number,
+	},
+	from_speech:{
+		type: Boolean,
+	},
+	client_ip:{
+		type: String,
 	}
 },
 	{
